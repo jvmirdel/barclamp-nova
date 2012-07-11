@@ -73,3 +73,9 @@ end
 execute "set ksm value" do
   command "echo #{node[:nova][:kvm][:ksm_enabled]} > /sys/kernel/mm/ksm/run"
 end  
+
+bash "install-vhost_net" do
+  code "/sbin/modprobe vhost_net"
+  returns [0,1]
+  ignore_failure true
+end
